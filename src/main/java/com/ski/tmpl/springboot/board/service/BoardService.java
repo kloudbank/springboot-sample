@@ -1,7 +1,10 @@
 package com.ski.tmpl.springboot.board.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.ski.tmpl.springboot.board.domain.Board;
 import com.ski.tmpl.springboot.board.repository.BoardRepository;
@@ -33,7 +36,7 @@ public class BoardService {
             board.setCreatedAt(this.boardRepository.findById(id).getCreatedAt());
         }  catch (NullPointerException e) {
             log.warn(id);
-            throw e;
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No Data");
         }
 		return this.boardRepository.save(board);
 	}
@@ -46,7 +49,7 @@ public class BoardService {
             result = true;
         } catch (NullPointerException e) {
             log.warn(id);
-            throw e;
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No Data");
         }
         return result;
 	}
