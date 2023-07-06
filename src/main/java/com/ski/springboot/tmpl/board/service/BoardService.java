@@ -1,12 +1,12 @@
-package com.ski.tmpl.board.service;
+package com.ski.springboot.tmpl.board.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.ski.tmpl.board.domain.Board;
-import com.ski.tmpl.board.repository.BoardRepository;
+import com.ski.springboot.tmpl.board.domain.Board;
+import com.ski.springboot.tmpl.board.repository.BoardRepository;
 
 import lombok.extern.log4j.Log4j2;
 

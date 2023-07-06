@@ -1,4 +1,4 @@
-package com.ski.tmpl.filter;
+package com.ski.springboot.tmpl.filter;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;

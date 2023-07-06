@@ -1,4 +1,4 @@
-package com.ski.tmpl.board.domain;
+package com.ski.springboot.tmpl.board.domain;
 
 import java.time.LocalDateTime;
 

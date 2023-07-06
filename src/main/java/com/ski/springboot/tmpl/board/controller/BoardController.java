@@ -1,4 +1,4 @@
-package com.ski.tmpl.board.controller;
+package com.ski.springboot.tmpl.board.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ski.tmpl.board.domain.Board;
-import com.ski.tmpl.board.service.BoardService;
+import com.ski.springboot.tmpl.board.domain.Board;
+import com.ski.springboot.tmpl.board.service.BoardService;
 
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
