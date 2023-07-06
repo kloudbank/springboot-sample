@@ -1,0 +1,82 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springboot-sample
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: springboot-sample
+  template:
+    metadata:
+      labels:
+        app: springboot-sample
+    spec:
+      containers:
+      - env:
+        - name: JAVA_OPTS
+          value: -Dspring.profiles.active=dev
+        name: springboot-sample
+        image: kloudbank/springboot-sample:0.0.1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        readinessProbe:
+            failureThreshold: 3
+            successThreshold: 1
+            httpGet:
+                path: /actuator/health/readiness
+                port: 8080
+                scheme: HTTP
+            initialDelaySeconds: 10
+            periodSeconds: 3
+        livenessProbe:
+            failureThreshold: 3
+            successThreshold: 1
+            httpGet:
+                path: /actuator/health/liveness
+                port: 8080
+                scheme: HTTP
+            initialDelaySeconds: 20
+            periodSeconds: 3
+        # resources:
+        #   limits:
+        #     cpu: 1000m
+        #     memory: 512Mi
+        #   requests:
+        #     cpu: 200m
+        #     memory: 256Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: springboot-sample
+  labels:
+    app: springboot-sample
+spec:
+  ports:
+  - port: 8080
+    targetPort: 8080
+    name: springboot-sample
+  selector:
+    app: springboot-sample
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: springboot-sample
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: springboot-sample.nogada.kubepia.net
+    http:
+      paths:
+      - pathType: Prefix
+        path: /
+        backend:
+          service:
+            name: springboot-sample
+            port:
+              number: 8080
