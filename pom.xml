@@ -10,8 +10,8 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
-	<groupId>com.ski.tmpl</groupId>
-	<artifactId>springboot</artifactId>
+	<groupId>com.ski</groupId>
+	<artifactId>tmpl</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>springboot-sample</name>
 	<description>Demo project for Spring Boot</description>
